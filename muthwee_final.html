@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For My Golden Boy 💛</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI', sans-serif;
+  background:linear-gradient(135deg,#fff6d5,#ffeaa7);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  overflow:hidden;
+  text-align:center;
+}
+
+.card{
+  background:white;
+  padding:30px;
+  border-radius:25px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.15);
+  max-width:420px;
+  position:relative;
+}
+
+h1{ color:#f5a623; }
+
+button{
+  padding:12px 22px;
+  border:none;
+  border-radius:25px;
+  background:#f5a623;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  margin-top:15px;
+}
+
+button:hover{ background:#e69500; }
+
+.hidden{ display:none; }
+
+input{
+  padding:10px;
+  border-radius:20px;
+  border:1px solid #ccc;
+  text-align:center;
+}
+
+img{
+  width:220px;
+  border-radius:20px;
+  margin-top:15px;
+  opacity:0;
+  transition:opacity 2s ease-in;
+}
+
+.fadeIn{ opacity:1; }
+
+#typedText{
+  min-height:160px;
+  margin-top:15px;
+  white-space:pre-line;
+}
+
+.heart{
+  position:fixed;
+  bottom:-10px;
+  font-size:20px;
+  animation:float 6s linear infinite;
+}
+
+@keyframes float{
+  to{
+    transform:translateY(-110vh);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<audio id="bgMusic" src="roja.mp3" preload="auto"></audio>
+
+<div class="card">
+
+<!-- LOCK SCREEN -->
+<div id="lockScreen">
+  <h1>Private Access 💛</h1>
+  <p>Only for Muthwee 🐾</p>
+  <input type="password" id="password" placeholder="Enter Secret Password">
+  <br>
+  <button onclick="checkPassword()">Unlock</button>
+</div>
+
+<!-- MAIN CONTENT -->
+<div id="mainContent" class="hidden">
+  <h1>Happy Birthday My Golden Boy ☕💛</h1>
+
+  <p>
+  Tea Energy Level: 100% ☕<br>
+  Softness Level: Maximum 🐶<br>
+  Approved by: Ammuzz 💛
+  </p>
+
+  <img src="muthwee.jpg" id="photo">
+
+  <div id="typedText"></div>
+
+  <button onclick="sendHug()">Send Virtual Hug 🤗</button>
+</div>
+
+</div>
+
+<script>
+
+function checkPassword(){
+  let pass = document.getElementById("password").value;
+  if(pass === "13022004"){
+    document.getElementById("lockScreen").classList.add("hidden");
+    document.getElementById("mainContent").classList.remove("hidden");
+
+    let music = document.getElementById("bgMusic");
+    music.volume = 0.35;
+    music.play().catch(()=>{});
+
+    document.getElementById("photo").classList.add("fadeIn");
+    typeMessage();
+    createHearts();
+  } else {
+    alert("Are you even my Muthwee? 🧐🐶");
+  }
+}
+
+let message = 
+"Muthwee...\n\n" +
+"On this day, the sweetest soul was born.\n\n" +
+"You are my calm, my comfort,\n" +
+"my warm cup of tea on a rainy day ☕💛\n\n" +
+"Thank you for being so gentle,\n" +
+"so funny, and so incredibly lovely.\n\n" +
+"May your tea stay warm,\n" +
+"your hugs stay tight,\n" +
+"and your smile never fade.\n\n" +
+"Stay soft. Stay silly. Stay mine.\n\n" +
+"— Always yours,\nAmmuzz 💛";
+
+function typeMessage(){
+  let i = 0;
+  let speed = 40;
+  function typing(){
+    if(i < message.length){
+      document.getElementById("typedText").innerHTML += message.charAt(i);
+      i++;
+      setTimeout(typing, speed);
+    }
+  }
+  typing();
+}
+
+function sendHug(){
+  alert("Ammuzz sent you the tightest hug ever 🤗💛");
+  createHearts();
+}
+
+function createHearts(){
+  for(let i=0;i<25;i++){
+    let heart=document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML="💛";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(Math.random()*3+3)+"s";
+    document.body.appendChild(heart);
+  }
+}
+
+</script>
+
+</body>
+</html>
